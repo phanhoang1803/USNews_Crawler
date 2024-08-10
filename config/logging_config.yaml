@@ -1,0 +1,36 @@
+version: 1
+formatters:
+  simple:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+handlers:
+  crawler_file:
+    class: logging.FileHandler
+    filename: "../logs/crawler.log"
+    formatter: simple
+    level: DEBUG
+  updater_file:
+    class: logging.FileHandler
+    filename: "../logs/update.log"
+    formatter: simple
+    level: DEBUG
+  process_file:
+    class: logging.FileHandler
+    filename: "../logs/process_data.log"
+    formatter: simple
+    level: DEBUG
+loggers:
+  crawler:
+    handlers: [crawler_file]
+    level: DEBUG
+    propagate: false
+  updater:
+    handlers: [updater_file]
+    level: DEBUG
+    propagate: false
+  process_data:
+    handlers: [process_file]
+    level: DEBUG
+    propagate: false
+root:
+  handlers: [crawler_file, updater_file, process_file]
+  level: INFO

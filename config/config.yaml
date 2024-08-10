@@ -1,0 +1,136 @@
+# config/config.yaml
+crawler:
+  feeds:
+    abc:
+      [
+        "https://abcnews.go.com/abcnews/topstories",
+        "https://abcnews.go.com/abcnews/internationalheadlines",
+        "https://abcnews.go.com/abcnews/usheadlines",
+        "https://abcnews.go.com/abcnews/moneyheadlines",
+        "https://abcnews.go.com/abcnews/healthheadlines",
+        "https://abcnews.go.com/abcnews/sportsheadlines",
+        "https://abcnews.go.com/abcnews/entertainmentheadlines",
+        "https://abcnews.go.com/abcnews/technologyheadlines",
+        "https://abcnews.go.com/abcnews/travelheadlines"
+      ]
+    cbs:
+      [
+        "https://www.cbsnews.com/latest/rss/main",
+        "https://www.cbsnews.com/latest/rss/us",
+        "https://www.cbsnews.com/latest/rss/politics",
+        "https://www.cbsnews.com/latest/rss/world",
+        "https://www.cbsnews.com/latest/rss/health",
+        "https://www.cbsnews.com/latest/rss/moneywatch",
+        "https://www.cbsnews.com/latest/rss/science",
+        "https://www.cbsnews.com/latest/rss/technology",
+        "https://www.cbsnews.com/latest/rss/entertainment",
+        "https://www.cbsnews.com/latest/rss/evening-news/cbs-news-investigates",
+        "https://www.cbsnews.com/latest/rss/60-minutes",
+        "https://www.cbsnews.com/latest/rss/evening-news",
+        "https://www.cbsnews.com/latest/rss/face-the-nation"
+      ]
+    cnn:
+      [
+        "http://rss.cnn.com/rss/cnn_topstories.rss",
+        "http://rss.cnn.com/rss/cnn_world.rss",
+        "http://rss.cnn.com/rss/cnn_us.rss",
+        "http://rss.cnn.com/rss/cnn_allpolitics.rss",
+        "http://rss.cnn.com/rss/cnn_tech.rss",
+        "http://rss.cnn.com/rss/cnn_health.rss",
+        "http://rss.cnn.com/rss/cnn_showbiz.rss",
+        "http://rss.cnn.com/rss/cnn_travel.rss"
+      ]
+    lat:
+      [
+        "https://www.latimes.com/business/rss2.0.xml", 
+        "https://www.latimes.com/california/rss2.0.xml", 
+        "https://www.latimes.com/environment/rss2.0.xml", 
+        "https://www.latimes.com/entertainment-arts/rss2.0.xml", 
+        "https://www.latimes.com/food/rss2.0.xml", 
+        "https://www.latimes.com/lifestyle/rss2.0.xml",
+        "https://www.latimes.com/politics/rss2.0.xml",
+        "https://www.latimes.com/science/rss2.0.xml", 
+        "https://www.latimes.com/sports/rss2.0.xml",
+        "https://www.latimes.com/travel/rss2.0.xml", 
+        "https://www.latimes.com/world-nation/rss2.0.xml"
+      ]
+    nbc:
+      [
+        "http://feeds.nbcnews.com/nbcnews/public/news",
+        "http://feeds.nbcnews.com/nbcnews/public/world",
+        "http://feeds.nbcnews.com/nbcnews/public/politics",
+        "http://feeds.nbcnews.com/nbcnews/public/health",
+      ]
+    npr:
+      [
+        "https://feeds.npr.org/1014/rss.xml", 
+        "https://feeds.npr.org/1001/rss.xml", 
+        "https://feeds.npr.org/1003/rss.xml", 
+        "https://feeds.npr.org/1004/rss.xml", 
+        "https://feeds.npr.org/1006/rss.xml", 
+        "https://feeds.npr.org/1007/rss.xml", 
+        "https://feeds.npr.org/1008/rss.xml", 
+        "https://feeds.npr.org/1009/rss.xml", 
+        "https://feeds.npr.org/1015/rss.xml", 
+        "https://feeds.npr.org/1016/rss.xml", 
+        "https://feeds.npr.org/1017/rss.xml"
+      ]
+    nyt:
+      [
+        "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/politics/rss.xml", 
+        "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml", 
+        "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/us/rss.xml", 
+        "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml", 
+        "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/business/rss.xml", 
+        "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/technology/rss.xml"
+      ]
+    politico:
+      [
+        "https://rss.politico.com/congress.xml",
+        "https://rss.politico.com/healthcare.xml",
+        "https://rss.politico.com/defense.xml",
+        "https://rss.politico.com/economy.xml",
+        "https://rss.politico.com/energy.xml",
+        "https://rss.politico.com/politics-news.xml"
+      ]
+    propub:
+      [
+        "http://feeds.propublica.org/propublica/main"
+      ]
+
+    usat:
+      [
+        "http://rssfeeds.usatoday.com/usatoday-NewsTopStories",
+        "http://rssfeeds.usatoday.com/UsatodaycomNation-TopStories",
+        "http://rssfeeds.usatoday.com/UsatodaycomWashington-TopStories",
+        "http://rssfeeds.usatoday.com/UsatodaycomWorld-TopStories",
+        "http://rssfeeds.usatoday.com/usatoday-LifeTopStories",
+        "http://rssfeeds.usatoday.com/usatoday-TechTopStories"
+      ]
+
+    wapo:
+      [
+        "https://feeds.washingtonpost.com/rss/politics", 
+        "https://feeds.washingtonpost.com/rss/national", 
+        "https://feeds.washingtonpost.com/rss/world", 
+        "https://feeds.washingtonpost.com/rss/business", 
+        "https://feeds.washingtonpost.com/rss/business/technology", 
+        "https://feeds.washingtonpost.com/rss/sports", 
+        "https://feeds.washingtonpost.com/rss/lifestyle", 
+        "https://feeds.washingtonpost.com/rss/entertainment"
+      ]
+  timeout: 6
+  # start_urls:
+  #   - "https://www.nbcnews.com/"
+  #   # - "https://another-news-site.com"
+  crawl_interval: 3600  # in seconds, 1 hour
+  user_agent: "Mozilla/5.0 (compatible; NewsCrawler/1.0; +http://example.com/bot)"
+
+json_updater:
+  json_dir: "../data/top_news"  # Directory containing JSON files with URLs
+
+logging:
+  level: "INFO"
+  log_file: "../logs/crawler.log"
+  json_updater_log_file: "../logs/json_updater.log"  # Separate log file for the JSON updater script
+

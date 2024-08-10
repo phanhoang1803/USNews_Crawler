@@ -1,0 +1,3 @@
+# requirements.txt
+news-please==1.5.22.72
+PyYAML==6.0

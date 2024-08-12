@@ -75,6 +75,7 @@ def crawl_news_once(conn, cursor, config, logger, batch_size=100):
     cursor.execute('SELECT url FROM urls WHERE crawled = 0 and url not like "%video%" and url not like "%www.cbsnews.com%"')
     urls = [url[0] for url in cursor.fetchall()]
 
+    print(f"Found {len(urls)} URLs to crawl")
     logger.info(f"Found {len(urls)} URLs to crawl")
 
     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36"
@@ -82,6 +83,7 @@ def crawl_news_once(conn, cursor, config, logger, batch_size=100):
     # Process in batches of 100 URLs
     for i in range(0, len(urls), batch_size):
         batch_urls = urls[i:i + batch_size]
+        print(f"Processing batch {i//batch_size + 1}: {len(batch_urls)} URLs")
         logger.info(f"Processing batch {i//batch_size + 1}: {len(batch_urls)} URLs")
 
         try:

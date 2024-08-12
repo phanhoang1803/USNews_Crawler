@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+import sqlite3
 import feedparser
 from newsplease import NewsPlease
 import requests
@@ -105,7 +106,8 @@ def crawl_news_once(conn, cursor, config, logger, batch_size=100):
 
 def save_article(conn, cursor, article, url, logger):
     if article:
-        cursor.execute('''
+        try:
+            cursor.execute('''
             INSERT OR IGNORE INTO articles (title, authors, published_date, description, text, url)
             VALUES (?, ?, ?, ?, ?, ?)
         ''', (
@@ -116,14 +118,29 @@ def save_article(conn, cursor, article, url, logger):
             article.maintext,
             article.url
         ))
-        cursor.execute('UPDATE urls SET crawled = 1 WHERE url = ?', (url,))
-        conn.commit()
-        logger.info(f"Saved article to database: {article.title}")
+            cursor.execute('UPDATE urls SET crawled = 1 WHERE url = ?', (url,))
+            conn.commit()
+            logger.info(f"Saved article to database: {article.title}")
+        except Exception as e:
+            logger.error(f"Error saving article to database: {e}")
+            print(f"Error saving article to database: {e}")
+            
     else:
         logger.warning(f"Failed to save article to database: {url}")
         cursor.execute('UPDATE urls SET crawled = -1 WHERE url = ?', (url,))
         conn.commit()
         
+        
+def connect_db(db_path, logger):
+    logger.info(f"Connecting to database at {db_path}...")
+    try:
+        conn = sqlite3.connect(db_path)
+        logger.info("Database connection successful.")
+        return conn
+    except Exception as e:
+        logger.error(f"Error connecting to database: {e}")
+        print(f"Error connecting to database: {e}")
+        raise        
         
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -131,3 +148,4 @@ def parse_arguments():
     parser.add_argument('--db_path', type=str, default='../data/news_articles.db', help='Path to the SQLite database file')
     
     return parser.parse_args()
+

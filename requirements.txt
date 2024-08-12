@@ -1,5 +1,4 @@
 # requirements.txt
 news-please
 PyYAML
-sqlite3
 feedparser

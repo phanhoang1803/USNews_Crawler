@@ -119,12 +119,9 @@ crawler:
         "https://feeds.washingtonpost.com/rss/lifestyle", 
         "https://feeds.washingtonpost.com/rss/entertainment"
       ]
-  timeout: 6
-  # start_urls:
-  #   - "https://www.nbcnews.com/"
-  #   # - "https://another-news-site.com"
+  timeout: 10
   crawl_interval: 3600  # in seconds, 1 hour
-  user_agent: "Mozilla/5.0 (compatible; NewsCrawler/1.0; +http://example.com/bot)"
+  user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 
 json_updater:
   json_dir: "../data/top_news"  # Directory containing JSON files with URLs
@@ -133,4 +130,3 @@ logging:
   level: "INFO"
   log_file: "../logs/crawler.log"
   json_updater_log_file: "../logs/json_updater.log"  # Separate log file for the JSON updater script
-

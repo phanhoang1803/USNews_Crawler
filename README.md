@@ -22,3 +22,7 @@ Edit `config/config.yaml` to change settings like URLs and crawl intervals.
 
 ## References
 - [TopNews](https://github.com/notnews/top_news.git)
+
+## Notes:
+- Some cnn page have been set to -1 because of timeout error, should be process later with longer timeout.
+- abcnews news have been removed because lots of unavaiable pages.

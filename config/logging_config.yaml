@@ -31,6 +31,10 @@ loggers:
     handlers: [process_file]
     level: DEBUG
     propagate: false
+  newsplease:
+    handlers: []  # Add this line to ignore logs from newsplease
+    level: INFO
+    propagate: false  # Ensure newsplease logs don't propagate to the root logger
 root:
   handlers: [crawler_file, updater_file, process_file]
   level: INFO

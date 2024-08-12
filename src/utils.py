@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import sqlite3
+import time
 import feedparser
 from newsplease import NewsPlease
 import requests
@@ -71,7 +72,7 @@ def crawl_news(conn, cursor, config, logger):
     # Commit the database changes
     conn.commit()
 
-def crawl_news_once(conn, cursor, config, logger, batch_size=100):
+def crawl_news_once(conn, cursor, config, logger, batch_size=100, max_crawl_time=None):
     # Fetch URLs that need to be crawled
     cursor.execute('SELECT url FROM urls WHERE crawled = 0 and url not like "%video%" and url not like "%www.cbsnews.com%"')
     urls = [url[0] for url in cursor.fetchall()]
@@ -81,8 +82,16 @@ def crawl_news_once(conn, cursor, config, logger, batch_size=100):
 
     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36"
     
+    if max_crawl_time is not None:
+        start_time = time.time()
+    
     # Process in batches of 100 URLs
     for i in range(0, len(urls), batch_size):
+        if max_crawl_time is not None and time.time() - start_time > max_crawl_time:
+            logger.info("Maximum crawl time reached. Exiting...")
+            print("Maximum crawl time reached. Exiting...")
+            break
+
         batch_urls = urls[i:i + batch_size]
         print(f"Processing batch {i//batch_size + 1}: {len(batch_urls)} URLs")
         logger.info(f"Processing batch {i//batch_size + 1}: {len(batch_urls)} URLs")
@@ -146,6 +155,8 @@ def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, default='config.yml', help='Path to the YAML configuration file')
     parser.add_argument('--db_path', type=str, default='../data/news_articles.db', help='Path to the SQLite database file')
+    parser.add_argument('--batch_size', type=int, default=100, help='Batch size for the crawler')
+    parser.add_argument('--max_crawl_time', type=int, default=None, help='Maximum crawl time in seconds')
     
     return parser.parse_args()
 

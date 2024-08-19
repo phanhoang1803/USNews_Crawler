@@ -40,7 +40,7 @@ if __name__ == "__main__":
         # discover_urls_from_feeds(conn, cursor, config, logger)
         # update_urls_from_json(conn, cursor, config, logger)
         # crawl_news(conn, cursor, config, logger)
-        crawl_news_once(conn, cursor, config, logger, args.batch_size, args.max_crawl_time)
+        crawl_news_once(conn, cursor, config, logger, args.batch_size, args.max_crawl_time, args.recrawl_failed_urls)
         
         logger.info("URL update from JSON files completed.")
     finally:

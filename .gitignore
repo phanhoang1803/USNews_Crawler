@@ -1,2 +1,3 @@
 top_news
-data/news_articles.db
+data/news_articles*
+notebooks/images

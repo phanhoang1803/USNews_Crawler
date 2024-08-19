@@ -72,9 +72,12 @@ def crawl_news(conn, cursor, config, logger):
     # Commit the database changes
     conn.commit()
 
-def crawl_news_once(conn, cursor, config, logger, batch_size=100, max_crawl_time=None):
+def crawl_news_once(conn, cursor, config, logger, batch_size=100, max_crawl_time=None, recrawl_failed_urls=False):
     # Fetch URLs that need to be crawled
-    cursor.execute('SELECT url FROM urls WHERE crawled = 0 and url not like "%video%" and url not like "%www.cbsnews.com%"')
+    if recrawl_failed_urls:
+        cursor.execute('SELECT url FROM urls WHERE crawled = 1 and url not like "%video%" and url not in (SELECT url FROM articles)')
+    else:
+        cursor.execute('SELECT url FROM urls WHERE crawled = 0 and url not like "%video%"')
     urls = [url[0] for url in cursor.fetchall()]
 
     print(f"Found {len(urls)} URLs to crawl")
@@ -102,7 +105,7 @@ def crawl_news_once(conn, cursor, config, logger, batch_size=100, max_crawl_time
 
             for url, article in articles.items():
                 save_article(conn, cursor, article, url, logger)
-                cursor.execute('UPDATE urls SET crawled = 1 WHERE url = ?', (url,))
+                # cursor.execute('UPDATE urls SET crawled = 1 WHERE url = ?', (url,))
 
         except requests.exceptions.RequestException as e:
             logger.error(f"Error during the crawling process: {e}")
@@ -157,6 +160,7 @@ def parse_arguments():
     parser.add_argument('--db_path', type=str, default='../data/news_articles.db', help='Path to the SQLite database file')
     parser.add_argument('--batch_size', type=int, default=100, help='Batch size for the crawler')
     parser.add_argument('--max_crawl_time', type=int, default=None, help='Maximum crawl time in seconds')
+    parser.add_argument('--recrawl_failed_urls', action='store_true', help='Recrawl failed URLs')
     
     return parser.parse_args()
 

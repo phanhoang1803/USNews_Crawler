@@ -16,7 +16,7 @@ def prepare_database(db_path):
     logger = logging.getLogger('crawler')
 
     # Connect to SQLite database (or create it if it doesn't exist)
-    conn = sqlite3.connect(db_path)
+    conn = connect_db(db_path, logger)
     cursor = conn.cursor()
 
     # Create tables for storing articles and URLs if they don't exist
@@ -52,7 +52,7 @@ if __name__ == "__main__":
             discover_urls_from_feeds(conn, cursor, config, logger)
             
             # Crawl discovered URLs
-            crawl_news_once(conn, cursor, config, logger)
+            crawl_news_once(conn, cursor, config, logger, args.batch_size, args.max_crawl_time, args.recrawl_failed_urls)
             
             logger.info(f"Sleeping for {config['crawler']['crawl_interval']} seconds")
             sleep(config['crawler']['crawl_interval'])

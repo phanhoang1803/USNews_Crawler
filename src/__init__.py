@@ -1,0 +1,1 @@
+# Data: 0: not crawled, 1: crawled, -1: crawl failed
